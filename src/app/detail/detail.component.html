@@ -1,0 +1,35 @@
+<h2>{{(postToDisplay | async)?.title}}</h2>
+<p>{{(postToDisplay | async)?.manager}}</p>
+<p>{{(postToDisplay | async)?.time}}</p>
+
+<p>
+  {{(postToDisplay | async)?.description}}
+</p>
+
+<h3>Comments</h3>
+<div *ngFor="let comment of ideas | async">
+  <div *ngIf="comment.id === (postToDisplay | async)?.$key">
+    <div class="panel">
+      <div class="panel-heading">
+        <h4>{{comment.author}}</h4>
+        <p>{{comment.time}}</p>
+      </div>
+      <div class="panel-body">
+        <p>{{comment.post}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h3>Write a comment</h3>
+<div class="form-group">
+  <label>Enter Your Name</label>
+  <input #name>
+</div>
+<div class="form-group">
+  <label>Comment</label>
+  <textarea #post></textarea>
+  <input type="hidden" #id value="{{(postToDisplay | async)?.$key}}">
+</div>
+<button (click)="leaveAComment(id.value, name.value, post.value); name.value=''; post.value=''">Post</button>
