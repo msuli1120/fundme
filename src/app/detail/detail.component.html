@@ -1,10 +1,33 @@
 <h2>{{(postToDisplay | async)?.title}}</h2>
-<p>{{(postToDisplay | async)?.manager}}</p>
-<p>{{(postToDisplay | async)?.time}}</p>
 
-<p>
-  {{(postToDisplay | async)?.description}}
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <p>{{(postToDisplay | async)?.manager}}</p>
+    <p>{{(postToDisplay | async)?.time}}</p>
+
+    <p>
+      {{(postToDisplay | async)?.description}}
+    </p>
+  </div>
+
+  <div class="col-md-4">
+    <div class="result">
+      <li>Target: {{(postToDisplay | async)?.fund}}</li>
+      <li>Current: {{(postToDisplay | async)?.current}}</li>
+      <li>Left: {{(postToDisplay | async)?.fund - (postToDisplay | async)?.current}}</li>
+      <button (click)="showForm()">Donate</button>
+      <div *ngIf="donateForm">
+        <input type="hidden" #id value="{{(postToDisplay | async)?.$key}}">
+        <input type="hidden" #current value="{{(postToDisplay | async)?.current}}">
+        <div class="form-group">
+          <label>Enter the Amount</label>
+          <input #amount placeholder="$">
+        </div>
+        <button (click)="donate(id.value, amount.value, current.value)">Donate</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <h3>Comments</h3>
 <div *ngFor="let comment of ideas | async">

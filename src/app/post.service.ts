@@ -27,4 +27,12 @@ export class PostService {
   addIdea(idea: Idea) {
     this.ideas.push(idea);
   }
+
+  donate(id: string, amount: string, current: string) {
+    var post = this.getPostById(id);
+    post.update({
+      current: parseInt(amount) + parseInt(current)
+    });
+  }
+
 }

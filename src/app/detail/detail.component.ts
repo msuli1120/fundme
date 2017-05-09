@@ -15,6 +15,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class DetailComponent implements OnInit {
   postId: string;
   postToDisplay;
+  donateForm = false;
   ideas: FirebaseListObservable<any[]>;
   constructor(private route: ActivatedRoute, private location: Location, private postService: PostService) { }
 
@@ -32,5 +33,15 @@ export class DetailComponent implements OnInit {
     var newIdea: Idea = new Idea(name, comment, time, id);
     this.postService.addIdea(newIdea);
   }
+
+  showForm() {
+    this.donateForm = true;
+  }
+
+  donate(id: string, amount: string, current: string) {
+    this.donateForm = false;
+    this.postService.donate(id, amount, current);
+  }
+
 
 }
