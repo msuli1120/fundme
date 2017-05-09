@@ -15,6 +15,7 @@ import { DonateComponent } from './donate/donate.component';
 import { masterFirebaseConfig } from './api-keys';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { SearchPipe } from './search.pipe';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -33,7 +34,8 @@ export const firebaseConfig = {
     AdminComponent,
     PostsComponent,
     DetailComponent,
-    DonateComponent
+    DonateComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

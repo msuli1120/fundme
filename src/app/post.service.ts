@@ -7,6 +7,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class PostService {
   posts: FirebaseListObservable<any[]>;
   ideas: FirebaseListObservable<any[]>;
+  filterBySearch: string;
   constructor(private database: AngularFireDatabase) {
     this.posts = database.list('posts');
     this.ideas = database.list('ideas');

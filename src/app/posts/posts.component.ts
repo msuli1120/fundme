@@ -39,4 +39,5 @@ export class PostsComponent implements OnInit {
     this.results = true;
   }
 
+
 }

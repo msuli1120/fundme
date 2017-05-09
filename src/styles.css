@@ -13,3 +13,16 @@ div#create {
   float: right;
   margin-top: -4.5%;
 }
+
+div.manager {
+  display: inline-block;
+  position: relative;
+  float: right;
+  margin-top: -2%;
+}
+
+div.panel h3 {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}

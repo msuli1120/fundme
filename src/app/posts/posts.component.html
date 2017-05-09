@@ -1,5 +1,7 @@
 <div class="row">
   <h2>Posts</h2>
+  <input #search placeholder="search by title">
+  <button (click)="search(search.value); search.value=''">Search</button>
   <div id="create">
     <button (click)="showCreateForm()">Create Fund</button>
   </div>
@@ -32,6 +34,9 @@
       <p>
         Remain: ${{post.fund - post.current}} out of ${{post.fund}}
       </p>
+      <div class="manager">
+        <p>Created by {{post.manager}} {{post.time}}</p>
+      </div>
     </div>
   </div>
 </div>
