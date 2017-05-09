@@ -35,4 +35,8 @@ export class PostService {
     });
   }
 
+  newPost(post: Post) {
+    this.posts.push(post);
+  }
+
 }

@@ -1,11 +1,36 @@
-<h2>Posts</h2>
+<div class="row">
+  <h2>Posts</h2>
+  <div id="create">
+    <button (click)="showCreateForm()">Create Fund</button>
+  </div>
+  <div class="createForm" *ngIf="showForm">
+    <h3>Create A Fund</h3>
+    <div class="form-group">
+      <label>Enter Your Name:</label>
+      <input #name>
+    </div>
+    <div class="form-group">
+      <label>Enter Title:</label>
+      <input #title>
+    </div>
+    <div class="form-group">
+      <label>Enter Description:</label>
+      <input #description>
+    </div>
+    <div class="form-group">
+      <label>Enter Amount:</label>
+      <input #amount>
+    </div>
+    <button (click)="createFund(name.value, title.value, description.value, amount.value)">Create</button>
+  </div>
+</div>
 
 <div *ngFor="let post of posts | async">
-  <div class="panel panel-default">
+  <div class="panel panel-default" *ngIf="results">
     <div class="panel-heading">
       <h3 (click)="goToDetail(post)">{{post.title}}</h3>
       <p>
-        {{post.width}}
+        Remain: ${{post.fund - post.current}} out of ${{post.fund}}
       </p>
     </div>
   </div>

@@ -13,7 +13,8 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class PostsComponent implements OnInit {
   posts: FirebaseListObservable<any[]>;
-
+  showForm = false;
+  results = true;
   constructor(private router: Router, private postService: PostService) { }
 
   ngOnInit() {
@@ -22,6 +23,20 @@ export class PostsComponent implements OnInit {
 
   goToDetail(post) {
     this.router.navigate(['posts', post.$key]);
+  }
+
+  showCreateForm() {
+    this.showForm = true;
+    this.results = false;
+  }
+
+  createFund(name: string, title: string, description: string, amount: number) {
+    var d = new Date();
+    var time = d.toLocaleString();
+    var newPost: Post = new Post(title, description, name, amount, 0, time);
+    this.postService.newPost(newPost);
+    this.showForm = false;
+    this.results = true;
   }
 
 }

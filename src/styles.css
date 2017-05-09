@@ -8,3 +8,8 @@ div.result {
   float: right;
   margin-top: -8%;
 }
+
+div#create {
+  float: right;
+  margin-top: -4.5%;
+}
