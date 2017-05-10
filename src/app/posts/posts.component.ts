@@ -19,6 +19,7 @@ export class PostsComponent implements OnInit {
   filterByRemain = 'all';
   filterByTime = 'all';
   orderByTime = 'all';
+
   constructor(private router: Router, private postService: PostService) { }
 
   ngOnInit() {

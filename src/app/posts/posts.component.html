@@ -48,6 +48,11 @@
   <div class="panel panel-default" *ngIf="results">
     <div class="panel-heading">
       <h3 (click)="goToDetail(post)">{{post.title}}</h3>
+      <div *ngIf="post.fund - post.current === 0">
+        <div class="congrats">
+          <h2>Closed!</h2>
+        </div>
+      </div>
       <p>
         Remain: ${{post.fund - post.current}} out of ${{post.fund}}
       </p>
