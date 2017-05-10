@@ -1,3 +1,51 @@
-<p>
-  admin works!
-</p>
+<h2>Admin</h2>
+
+<input type="text" [(ngModel)]="userFilter.title" placeholder="search">
+
+<select (change)="onTime($event.target.value)">
+  <option value="all">All</option>
+  <option value="thisMonth">This Month</option>
+  <option value="lastMonth">Last Month</option>
+  <option value="thisYear">This Year</option>
+</select>
+
+<select (change)="hideChange($event.target.value)">
+  <option value="all">All</option>
+  <option value="time">Latest Comments</option>
+</select>
+
+<div *ngFor="let post of posts | async | filterBy:userFilter | time:filterByTime">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h5>{{post.title}} <p>Posted Time: {{post.time}}</p> </h5>
+    </div>
+    <div class="panel-body">
+      <h4>{{post.title}}</h4>
+      <div class="postInfo">
+        <p>Posted By: {{post.manager}}</p>
+        <p>Description: {{post.description}}</p>
+        <p>Total: {{post.fund}}</p>
+        <p>Current Fund: {{post.current}}</p>
+      </div>
+      <app-edit [selectPost]="post"></app-edit>
+
+      <h4>Comments</h4>
+      <div *ngFor="let comment of ideas | async | commentOrderBy:desiredTime">
+        <div *ngIf="comment.id === post.$key">
+          <div class="panel">
+            <div class="deleteLogo" (click)="deleteComment(comment)">
+              <img src="http://freevector.co/wp-content/uploads/2012/05/51811-close-or-delete-button-circular-symbol-with-a-cross-inside.png">
+            </div>
+            <div class="panel-heading">
+              <p>{{comment.author}}</p>
+              <p>{{comment.time}}</p>
+            </div>
+            <div class="panel-body">
+              <p>{{comment.post}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

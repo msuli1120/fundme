@@ -57,3 +57,14 @@ div.congrats {
 div.congrats h2 {
   color: green;
 }
+
+div.deleteLogo img {
+  height: 20px;
+  width: 20px;
+}
+
+div.deleteLogo {
+  float: right;
+  margin-right: 3%;
+  cursor: pointer;
+}

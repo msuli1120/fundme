@@ -21,6 +21,7 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { TimePipe } from './time.pipe';
 import { OrderbyPipe } from './orderby.pipe';
 import { CommentOrderByPipe } from './comment-order-by.pipe';
+import { EditComponent } from './edit/edit.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -43,7 +44,8 @@ export const firebaseConfig = {
     SearchPipe,
     TimePipe,
     OrderbyPipe,
-    CommentOrderByPipe
+    CommentOrderByPipe,
+    EditComponent
   ],
   imports: [
     BrowserModule,

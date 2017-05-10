@@ -25,6 +25,10 @@ export class PostService {
     return this.database.object('posts/' + id);
   }
 
+  getIdeaById(id: string) {
+    return this.database.object('ideas/' + id);
+  }
+
   addIdea(idea: Idea) {
     this.ideas.push(idea);
   }
@@ -38,6 +42,20 @@ export class PostService {
 
   newPost(post: Post) {
     this.posts.push(post);
+  }
+
+  updatePost(post) {
+    var postEntryInFirebase = this.getPostById(post.$key);
+    postEntryInFirebase.update({
+      title: post.title,
+      description: post.description,
+      fund: post.fund
+    });
+  }
+
+  deleteComm(comment) {
+    var ideaEntryFirebase = this.getIdeaById(comment.$key);
+    ideaEntryFirebase.remove();
   }
 
 }
