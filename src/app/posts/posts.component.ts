@@ -18,6 +18,7 @@ export class PostsComponent implements OnInit {
   userFilter: any = { title: '', manager: '' };
   filterByRemain = 'all';
   filterByTime = 'all';
+  orderByTime = 'all';
   constructor(private router: Router, private postService: PostService) { }
 
   ngOnInit() {
@@ -52,6 +53,15 @@ export class PostsComponent implements OnInit {
 
   onTime(option) {
     this.filterByTime = option;
+  }
+
+  orderBy(option) {
+    this.orderByTime = option;
+  }
+
+  width(post: Post) {
+    var per = post.current / parseInt(post.fund) * 100;
+    return per + '%';
   }
 
 }

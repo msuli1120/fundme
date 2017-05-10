@@ -42,7 +42,11 @@
 </div>
 
 <h3>Comments</h3>
-<div *ngFor="let comment of ideas | async">
+<select (change)="hideChange($event.target.value)">
+  <option value="all">All</option>
+  <option value="time">Latest</option>
+</select>
+<div *ngFor="let comment of ideas | async | commentOrderBy:desiredTime">
   <div *ngIf="comment.id === (postToDisplay | async)?.$key">
     <div class="panel">
       <div class="panel-heading">

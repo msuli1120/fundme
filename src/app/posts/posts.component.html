@@ -13,6 +13,10 @@
     <option value="lastMonth">Last Month</option>
     <option value="thisYear">This Year</option>
   </select>
+  <select *ngIf="results" (change)="orderBy($event.target.value)">
+    <option value="all">All</option>
+    <option value="time">Latest Post</option>
+  </select>
   <div id="create">
     <button (click)="showCreateForm()">Create Fund</button>
   </div>
@@ -40,13 +44,18 @@
   </div>
 </div>
 
-<div *ngFor="let post of posts | async | filterBy:userFilter | search:filterByRemain | time:filterByTime">
+<div *ngFor="let post of posts | async | orderby:orderByTime |filterBy:userFilter | search:filterByRemain | time:filterByTime">
   <div class="panel panel-default" *ngIf="results">
     <div class="panel-heading">
       <h3 (click)="goToDetail(post)">{{post.title}}</h3>
       <p>
         Remain: ${{post.fund - post.current}} out of ${{post.fund}}
       </p>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="70"
+        aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': width(post)}">{{post.current}}
+        </div>
+      </div>
       <div class="manager">
         <p>Created by {{post.manager}} {{post.time}}</p>
       </div>

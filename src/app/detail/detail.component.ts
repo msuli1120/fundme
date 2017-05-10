@@ -19,6 +19,7 @@ export class DetailComponent implements OnInit {
   warningShow = false;
   successShow = false;
   ideas: FirebaseListObservable<any[]>;
+  desiredTime: string = 'all';
   constructor(private route: ActivatedRoute, private location: Location, private postService: PostService) { }
 
   ngOnInit() {
@@ -50,4 +51,9 @@ export class DetailComponent implements OnInit {
       this.warningShow = true;
     }
   }
+
+  hideChange(option) {
+    this.desiredTime = option;
+  }
+
 }
