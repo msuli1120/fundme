@@ -53,3 +53,7 @@ div.congrats {
   float: right;
   margin-top: -4%;
 }
+
+div.congrats h2 {
+  color: green;
+}
