@@ -17,6 +17,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { SearchPipe } from './search.pipe';
 
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { TimePipe } from './time.pipe';
+
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
   authDomain: masterFirebaseConfig.authDomain,
@@ -35,7 +38,8 @@ export const firebaseConfig = {
     PostsComponent,
     DetailComponent,
     DonateComponent,
-    SearchPipe
+    SearchPipe,
+    TimePipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ export const firebaseConfig = {
     HttpModule,
     routing,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    Ng2FilterPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

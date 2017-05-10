@@ -26,3 +26,25 @@ div.panel h3 {
   text-decoration: underline;
   cursor: pointer;
 }
+
+div.panel-warning {
+  margin-top: -2%;
+}
+
+div.panel-warning h3 {
+  text-align: center;
+}
+
+div.panel-success {
+  margin-top: -2%;
+}
+
+div.panel-success h3 {
+  text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

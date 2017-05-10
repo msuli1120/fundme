@@ -1,33 +1,46 @@
 <div class="row">
   <h2>Posts</h2>
-  <input #search placeholder="search by title">
-  <button (click)="search(search.value); search.value=''">Search</button>
+  <input type="text" [(ngModel)]="userFilter.title" placeholder="search" *ngIf="results">
+  <select *ngIf="results" (change)="onRemain($event.target.value)">
+    <option value="all">All</option>
+    <option value="lt1">Remain Less Than $1,000</option>
+    <option value="lt2">Remain Less Than $10,000</option>
+    <option value="lt3">Remain Less Than $100,000</option>
+  </select>
+  <select *ngIf="results" (change)="onTime($event.target.value)">
+    <option value="all">All</option>
+    <option value="thisMonth">This Month</option>
+    <option value="lastMonth">Last Month</option>
+    <option value="thisYear">This Year</option>
+  </select>
   <div id="create">
     <button (click)="showCreateForm()">Create Fund</button>
   </div>
   <div class="createForm" *ngIf="showForm">
     <h3>Create A Fund</h3>
-    <div class="form-group">
-      <label>Enter Your Name:</label>
-      <input #name>
-    </div>
-    <div class="form-group">
-      <label>Enter Title:</label>
-      <input #title>
-    </div>
-    <div class="form-group">
-      <label>Enter Description:</label>
-      <input #description>
-    </div>
-    <div class="form-group">
-      <label>Enter Amount:</label>
-      <input #amount>
-    </div>
-    <button (click)="createFund(name.value, title.value, description.value, amount.value)">Create</button>
+    <form ngNativeValidate>
+      <div class="form-group">
+        <label>Enter Your Name:</label>
+        <input #name class="form-control" type="text">
+      </div>
+      <div class="form-group">
+        <label>Enter Title:</label>
+        <input #title class="form-control" type="text">
+      </div>
+      <div class="form-group">
+        <label>Enter Description:</label>
+        <textarea #description class="form-control" type="text"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Enter Amount:</label>
+        <input #amount class="form-control" type="number" placeholder="number" min="1">
+      </div>
+      <button (click)="createFund(name.value, title.value, description.value, amount.value)">Create</button>
+    </form>
   </div>
 </div>
 
-<div *ngFor="let post of posts | async">
+<div *ngFor="let post of posts | async | filterBy:userFilter | search:filterByRemain | time:filterByTime">
   <div class="panel panel-default" *ngIf="results">
     <div class="panel-heading">
       <h3 (click)="goToDetail(post)">{{post.title}}</h3>

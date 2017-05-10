@@ -15,6 +15,9 @@ export class PostsComponent implements OnInit {
   posts: FirebaseListObservable<any[]>;
   showForm = false;
   results = true;
+  userFilter: any = { title: '', manager: '' };
+  filterByRemain = 'all';
+  filterByTime = 'all';
   constructor(private router: Router, private postService: PostService) { }
 
   ngOnInit() {
@@ -30,14 +33,25 @@ export class PostsComponent implements OnInit {
     this.results = false;
   }
 
-  createFund(name: string, title: string, description: string, amount: number) {
-    var d = new Date();
-    var time = d.toLocaleString();
-    var newPost: Post = new Post(title, description, name, amount, 0, time);
-    this.postService.newPost(newPost);
-    this.showForm = false;
-    this.results = true;
+  createFund(name: string, title: string, description: string, amount: string) {
+      if((name !== '') && (title !== '') && (description !== '') && (amount !== '')) {
+        var d = new Date();
+        var time = d.toLocaleString();
+        var newPost: Post = new Post(title, description, name, amount, 0, time);
+        this.postService.newPost(newPost);
+        this.showForm = false;
+        this.results = true;
+      } else {
+        confirm('Please fill out the blanks!');
+      }
   }
 
+  onRemain(option) {
+    this.filterByRemain = option;
+  }
+
+  onTime(option) {
+    this.filterByTime = option;
+  }
 
 }

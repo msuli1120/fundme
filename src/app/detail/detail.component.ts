@@ -16,6 +16,8 @@ export class DetailComponent implements OnInit {
   postId: string;
   postToDisplay;
   donateForm = false;
+  warningShow = false;
+  successShow = false;
   ideas: FirebaseListObservable<any[]>;
   constructor(private route: ActivatedRoute, private location: Location, private postService: PostService) { }
 
@@ -38,10 +40,14 @@ export class DetailComponent implements OnInit {
     this.donateForm = true;
   }
 
-  donate(id: string, amount: string, current: string) {
-    this.donateForm = false;
-    this.postService.donate(id, amount, current);
+  donate(id: string, amount: string, current: string, left: string) {
+    if(parseInt(left) > parseInt(amount)) {
+      this.donateForm = false;
+      this.warningShow = false;
+      this.postService.donate(id, amount, current);
+      this.successShow = true;
+    } else if(parseInt(left) < parseInt(amount)) {
+      this.warningShow = true;
+    }
   }
-
-
 }

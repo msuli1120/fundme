@@ -10,7 +10,7 @@
     </p>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-2">
     <div class="result">
       <li>Target: {{(postToDisplay | async)?.fund}}</li>
       <li>Current: {{(postToDisplay | async)?.current}}</li>
@@ -19,12 +19,24 @@
       <div *ngIf="donateForm">
         <input type="hidden" #id value="{{(postToDisplay | async)?.$key}}">
         <input type="hidden" #current value="{{(postToDisplay | async)?.current}}">
+        <input type="hidden" #left value="{{(postToDisplay | async)?.fund - (postToDisplay | async)?.current}}">
         <div class="form-group">
           <label>Enter the Amount</label>
-          <input #amount placeholder="$">
+          <input #amount placeholder="$" type="number" min="1">
         </div>
-        <button (click)="donate(id.value, amount.value, current.value)">Donate</button>
+        <button (click)="donate(id.value, amount.value, current.value, left.value); amount.value=''">Donate</button>
       </div>
+    </div>
+  </div>
+
+  <div class="panel-warning col-md-4" id="warning" *ngIf="warningShow">
+    <div class="panel-heading">
+      <h3>Don't need that much anymore!</h3>
+    </div>
+  </div>
+  <div class="panel-success col-md-4" id="success" *ngIf="successShow">
+    <div class="panel-heading">
+      <h3>Thanks for your donation!</h3>
     </div>
   </div>
 </div>
