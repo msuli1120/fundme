@@ -42,7 +42,7 @@ export class DetailComponent implements OnInit {
   }
 
   donate(id: string, amount: string, current: string, left: string) {
-    if(parseInt(left) > parseInt(amount)) {
+    if(parseInt(left) >= parseInt(amount)) {
       this.donateForm = false;
       this.warningShow = false;
       this.postService.donate(id, amount, current);
