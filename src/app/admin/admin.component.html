@@ -18,6 +18,9 @@
   <div class="panel panel-info">
     <div class="panel-heading">
       <h5>{{post.title}} <p>Posted Time: {{post.time}}</p> </h5>
+      <div class="deletePost" (click)="deletePost(post)">
+        <img src="http://freevector.co/wp-content/uploads/2012/05/51811-close-or-delete-button-circular-symbol-with-a-cross-inside.png">
+      </div>
     </div>
     <div class="panel-body">
       <h4>{{post.title}}</h4>

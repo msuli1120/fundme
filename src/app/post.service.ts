@@ -7,6 +7,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class PostService {
   posts: FirebaseListObservable<any[]>;
   ideas: FirebaseListObservable<any[]>;
+
   filterBySearch: string;
   constructor(private database: AngularFireDatabase) {
     this.posts = database.list('posts');
@@ -56,6 +57,11 @@ export class PostService {
   deleteComm(comment) {
     var ideaEntryFirebase = this.getIdeaById(comment.$key);
     ideaEntryFirebase.remove();
+  }
+
+  deleteP(post) {
+    var postEntryInFirebase = this.getPostById(post.$key);
+    postEntryInFirebase.remove();
   }
 
 }

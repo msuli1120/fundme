@@ -68,3 +68,16 @@ div.deleteLogo {
   margin-right: 3%;
   cursor: pointer;
 }
+
+div.deletePost img {
+  height: 20px;
+  width: 20px;
+}
+
+div.deletePost {
+  display: inline-block;
+  float: right;
+  margin-right: -1%;
+  margin-top: -5%;
+  cursor: pointer;
+}

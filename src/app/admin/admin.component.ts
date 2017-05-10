@@ -36,8 +36,14 @@ export class AdminComponent implements OnInit {
   }
 
   deleteComment(comment) {
-    if(confirm("Are you sure you want to delete this comment?")){
+    if(confirm("Are you sure you want to delete this comment?")) {
       this.postService.deleteComm(comment);
+    }
+  }
+
+  deletePost(post) {
+    if(confirm("Are you sure you want to delete this post?")) {
+      this.postService.deleteP(post);
     }
   }
 }
